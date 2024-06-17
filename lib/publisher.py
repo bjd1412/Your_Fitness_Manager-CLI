@@ -49,4 +49,22 @@ class Publisher:
         return publisher
  
     def update(self):
+        sql = """
+            UPDATE publishers SET company_name = ?, location = ?
+            WHERE id = ?
+        """
+        CURSOR.execute(sql, (self.company_name, self.location, self.id))
+        CONN.commit()
+
+    def delete(self):
+        sql = """
+            DELETE FROM publishers WHERE id = ?
+        """
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
+        del type(self).all[self.id]
+        self.id = None
+
+    @classmethod
+    def instance_from_db(cls, row):
         pass
