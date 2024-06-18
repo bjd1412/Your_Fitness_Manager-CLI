@@ -67,4 +67,39 @@ class Publisher:
 
     @classmethod
     def instance_from_db(cls, row):
-        pass
+        publisher = cls.all.get(row[0])
+
+        if publisher:
+            publisher.company_name = row[1]
+            publisher.location = row[2]
+        else:
+            publisher = cls(row[1], row[2])
+            publisher.id = row[0]
+            cls.all[publisher.id] = publisher
+        return publisher
+
+    @classmethod
+    def find_by_id(cls, id):
+        sql = """
+        SELECT * FROM publishers WHERE id = ?
+        """
+        row = CURSOR.execute(sql, (id,)).fetchone()
+        return cls.instance_from_db(row) if row else None
+
+    @classmethod
+    def find_by_name(cls, company_name):
+        sql = """
+            SELECT * FROM publishers WHERE company_name = ? 
+        """
+        row = CURSOR.execute(sql, (company_name,)).fetchone()
+        return cls.instance_from_db(row) if row else None
+
+    @classmethod
+    def get_all(cls):
+        sql = """
+            SELECT * FROM publishers
+        """
+        rows = CURSOR.execute(sql).fetchall()
+        return [cls.instance_from_db(row) for row in rows]
+
+           
