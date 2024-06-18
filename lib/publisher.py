@@ -11,6 +11,30 @@ class Publisher:
         self.company_name = company_name
         self.location = location
 
+    @property
+    def company_name(self):
+        return self._company_name
+
+    @company_name.setter
+    def company_name(self, company_name):
+        if isinstance(company_name, str) and len(company_name):
+            self._company_name = company_name
+        else:
+            raise ValueError("Company name must be a non-empty string")
+
+    @property
+    def location(self):
+        return self._location
+
+    @location.setter
+    def location(self, location):
+        if isinstance(location, str) and len(location) > 5:
+            self._location = location
+        else:
+            raise ValueError("Location must be a non-empty string with more than 5 characters.")
+
+
+
     def __repr__(self):
         return f"<Publisher {self.id}: {self.company_name}, {self.location}>"
 
