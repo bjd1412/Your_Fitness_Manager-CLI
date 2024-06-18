@@ -68,7 +68,10 @@ class Videogame:
         sql = """
             DELETE FROM videogames WHERE id = ?
         """
-        CURSOR.execute(sql,(self.id,))
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
+        del type(self).all[self.id]
+        self.id = None
 
 
 
