@@ -12,7 +12,17 @@ class Videogame:
         self.year = year
         self.console = console
         self.publisher_id = publisher_id
-        
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        if isinstance(name, str) and len(name):
+            self._name = name
+        else:
+            raise ValueError("Name must be a non-empty string")
 
     def __repr__(self):
         return(
