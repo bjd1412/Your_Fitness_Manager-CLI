@@ -10,8 +10,10 @@ from helpers import (
     delete_publisher,
     list_all_videogames,
     find_videogames_by_id,
-    find_videogames_by_name
-
+    find_videogames_by_name,
+    update_videogames,
+    delete_videogames,
+    create_videogames
 )
 
 
