@@ -24,11 +24,57 @@ class Videogame:
         else:
             raise ValueError("Name must be a non-empty string")
 
+    @property
+    def genre(self):
+        return self._genre
+
+    @genre.setter
+    def genre(self, genre):
+        if isinstance(genre, str) and len(genre):
+            self._genre = genre
+        else:
+            raise ValueError("Genre must be a non-empty string")
+
+    @property
+    def year(self):
+        return self._year
+
+    @year.setter
+    def year(self, year):
+        if type(year) is int and int(year) >= 1950:
+            self._year = year
+        else:
+            raise ValueError("Year must be an integer greater than 1950")
+
+    @property
+    def publisher_id(self):
+        return self._publisher_id
+
+    @publisher_id.setter
+    def publisher_id(self, publisher_id):
+        if type(publisher_id) is int and Publisher.find_by_id(publisher_id):
+            self._publisher_id = publisher_id
+        else:
+            raise ValueError("The publisher's id must reference a publisher in the database")
+
+
+
     def __repr__(self):
         return(
             f"<Videogame {self.id}: {self.name}, {self.genre}, {self.year}, {self.console}, " +
             f"Publisher ID: {self.publisher_id}>"
         )
+
+    @property
+    def console(self):
+        return self._console
+
+    @console.setter
+    def console(self, console):
+        if isinstance(console, str) and len(console):
+            self._console = console
+        else:
+            raise ValueError("Console must be a non-empty string")
 
     @classmethod
     def create_table(cls):
