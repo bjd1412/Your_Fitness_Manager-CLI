@@ -1,6 +1,6 @@
 # lib/Videogame.py
-from __init__ import CONN, CURSOR
-from publisher import Publisher
+from models.__init__ import CONN, CURSOR
+from models.publisher import Publisher
 
 class Videogame:
     all = {}

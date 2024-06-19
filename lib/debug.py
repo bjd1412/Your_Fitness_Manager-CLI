@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # lib/debug.py
 
-from __init__ import CONN, CURSOR
-from publisher import Publisher
-from videogame import Videogame
+from models.__init__ import CONN, CURSOR
+from models.publisher import Publisher
+from models.videogame import Videogame
 import ipdb
 
 def reset_database():
