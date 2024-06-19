@@ -24,26 +24,27 @@ def main():
         if choice == "0":
             exit_program()
         elif choice == "1":
-            helper_1()
-        elif choice == "2":
             list_all_publishers()
-        elif choice == "3":
+        elif choice == "2":
             find_publisher_by_id()
-        elif choice =="4":
+        elif choice =="3":
             find_publisher_by_name()
-        elif choice =="5":
+        elif choice =="4":
             update_publisher()
-        elif choice == "6":
+        elif choice == "5":
             delete_publisher()
-        elif choice == "7":
+        elif choice == "6":
             list_all_videogames()
-        elif choice == "8":
+        elif choice == "7":
             find_videogames_by_id()
-        elif choice == "9":
+        elif choice == "8":
             find_videogames_by_name()
-
-
-
+        elif choice == "9":
+            create_videogames()
+        elif choice == "10":
+            update_videogames()
+        elif choice == "11":
+            delete_videogames()
         else:
             print("Invalid choice")
 
