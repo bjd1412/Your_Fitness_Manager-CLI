@@ -9,12 +9,33 @@ from helpers import (
     update_publisher,
     delete_publisher,
     list_all_videogames,
-    find_videogames_by_id,
-    find_videogames_by_name,
-    update_videogames,
-    delete_videogames,
-    create_videogames
+    find_videogame_by_id,
+    find_videogame_by_name,
+    update_videogame,
+    delete_videogame,
+    create_videogame
 )
+
+def main2():
+    while True:
+        menu2()
+        choice = input("> ")
+        if choice == "0":
+            exit_program()
+        elif choice == "6":
+            list_all_videogames()
+        elif choice == "7":
+            find_videogames_by_id()
+        elif choice == "8":
+            find_videogames_by_name()
+        elif choice == "9":
+            create_videogames()
+        elif choice == "10":
+            update_videogames()
+        elif choice == "11":
+            delete_videogames()
+        else:
+            print("Invalid choice")
 
 
 def main():
@@ -33,27 +54,31 @@ def main():
             update_publisher()
         elif choice == "5":
             delete_publisher()
-        elif choice == "6":
-            list_all_videogames()
-        elif choice == "7":
-            find_videogames_by_id()
-        elif choice == "8":
-            find_videogames_by_name()
-        elif choice == "9":
-            create_videogames()
-        elif choice == "10":
-            update_videogames()
-        elif choice == "11":
-            delete_videogames()
-        else:
             print("Invalid choice")
 
 
 def menu():
-    print("Please select an option:")
+    print("Welcome to the ")
     print("0. Exit the program")
     print("1. Some useful function")
 
+def menu2():
+    print("New Menu")
+
+def mover():
+    choice = 0
+    print("Hey, are you a publisher or a game. 22 for publisher, 23 for game: ")
+    while True:
+        choice = input(">")
+        if choice == "22":
+            main()
+        elif choice == "23":
+            main2()
+        else:
+            print("Invalid Choice")
+
 
 if __name__ == "__main__":
-    main()
+    mover()
+    
+    

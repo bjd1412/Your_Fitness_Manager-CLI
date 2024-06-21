@@ -2,7 +2,7 @@
 from models.__init__ import CONN, CURSOR
 from models.publisher import Publisher
 
-class Videogame:
+class Exercise:
     all = {}
     
     def __init__(self, name, genre, year, console, publisher_id, id=None):
@@ -61,8 +61,7 @@ class Videogame:
 
     def __repr__(self):
         return(
-            f"<Videogame {self.id}: {self.name}, {self.genre}, {self.year}, {self.console}, " +
-            f"Publisher ID: {self.publisher_id}>"
+            f"<Videogame {self.id}: {self.name}, {self.genre}, {self.year}, {self.console}"
         )
 
     @property
