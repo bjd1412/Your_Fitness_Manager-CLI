@@ -2,20 +2,18 @@
 # lib/debug.py
 
 from models.__init__ import CONN, CURSOR
-from models.publisher import Publisher
-from models.videogame import Videogame
+from models.fitness import Fitness
+from models.exercise import Exercise
 import ipdb
 
 def reset_database():
-    Publisher.drop_table()
-    Videogame.drop_table()
-    Publisher.create_table()
-    Videogame.create_table()
+    Fitness.drop_table()
+    Exercise.drop_table()
+    Fitness.create_table()
+    Exercise.create_table()
     
-    Microsoft = Publisher.create("Microsoft", "Redmond, WA")
-    EA = Publisher.create("Electronic Arts", "Redwood City, CA")
-    Videogame.create("HALO 5", "Sci-fi/FPS", 2023, "XBOX", Microsoft.id)
-    Videogame.create("Apex Legends", "Sci-fi/FPS", 2020, "XBOX, PC, Playstation", EA.id )
+    Cardio = Fitness.create("Cardio", "Neighbors")
+    Incline = Exercise.create("Cardio", "High-Incline Run", "30 min", Cardio.id)
 
 
 
