@@ -21,60 +21,19 @@ def homeMain():
     list_all_fitness()
     print()
     print()
-    print('Would you like to add a training type? press 1.')
-    print("To exit, press 0") 
-    print("Press 3 see all of your exsercises fo ryour training type.")   
+    print('Press 1 to see all exercises for your training type.')
+    print("Press 2 to add a new training type.") 
+    print("Press 0 to exit.")   
     while True:
         choice = int(input())           
         if choice == 0:
             exit_program()
         elif choice == 1:
             list_training_exercises()
-        elif choice == 3:
             menu2()
-
-
-
-
-
-
-def main2():
-    while True:
-        menu2()
-        choice = input("> ")
-        if choice == "0":
-            exit_program()
-        elif choice == "1":
-            list_all_Exercises()
-        elif choice == "2":
-            find_exercise_by_name()
-        elif choice == "3":
-            create_exercise()
-        else:
-            print("Invalid choice")
-
-
-def main():
-    while True:
-        menu()
-        choice = input("> ")
-        if choice == "0":
-            exit_program()
-        elif choice == "1":
-            list_all_fitness()
-        elif choice == "2":
-            fitness_by_training()
-        elif choice =="3":
+        elif choise == 2:
             create_fitness()
-        elif choice =="4":
-            delete_fitness()
 
-
-
-def menu():
-    print("Welcome to the ")
-    print("0. Exit the program")
-    print("1. Some useful function")
 
 def menu2():
     print("press 1 to go back to Home Menu")
