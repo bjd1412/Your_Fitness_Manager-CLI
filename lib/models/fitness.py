@@ -13,7 +13,7 @@ class Fitness:
 
 
     def __repr__(self):
-        return f"<Fitness: {self.training}, {self.target}>"
+        return f"Fitness: {self.training}, {self.target}"
 
     @classmethod
     def create_table(cls):
@@ -55,7 +55,7 @@ class Fitness:
             UPDATE fitness SET training = ?, target = ?
             WHERE id = ?
         """
-        CURSOR.execute(sql, (self.training, self.id))
+        CURSOR.execute(sql, (self.training, self.target, self.id))
         CONN.commit()
 
     def delete(self):
@@ -103,5 +103,15 @@ class Fitness:
         """
         rows = CURSOR.execute(sql).fetchall()
         return [cls.instance_from_db(row) for row in rows]
+
+    def exercises(self):
+        from models.exercise import Exercise
+        sql = """
+            SELECT * FROM exercises WHERE id = ?
+        """
+        CURSOR.execute(sql, (self.id,),)
+
+        rows = CURSOR.fetchall()
+        return[Exercise.instance_from_db(row) for row in rows]
 
            

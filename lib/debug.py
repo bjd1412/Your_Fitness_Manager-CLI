@@ -12,7 +12,7 @@ def reset_database():
     Fitness.create_table()
     Exercise.create_table()
     
-    Cardio = Fitness.create("Cardio", "Neighbors")
+    Cardio = Fitness.create("Cardio", "Heart/Weightloss/legs")
     Incline = Exercise.create("Cardio", "High-Incline Run", "30 min", Cardio.id)
 
 

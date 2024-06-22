@@ -1,109 +1,86 @@
 # lib/helpers.py
-from models.publisher import  Publisher
-from models.videogame import Videogame
+from models.fitness import  Fitness
+from models.exercise import Exercise
 
-#Publishers
-def helper_1():
-    print("Performing useful function#1.")
+#Fitness
 
 
 def exit_program():
     print("Goodbye!")
     exit()
 
-def list_all_publishers():
-    publishers = Publisher.get_all()
-    for pub in publishers:
-        print(pub)
+def list_all_fitness():
+    fitness = Fitness.get_all()
+    for i,fit in enumerate(fitness,start=1):
+        print(f"{i}. {fit.training}")
 
-def find_publisher_by_id():
-    id_ = input("Enter the id number of the publisher: ")
-    publishers = Publisher.find_by_id(id_)
-    if publishers:
-        print(publishers)
+def fitness_by_id():
+    id_ = input()
+    fit = Fitness.find_by_id(id_)
+    if fit:
+        print(fit)
     else:
-        print("The publisher id was not found.")
+        print("The fitness id was not found.")
 
-def find_publisher_by_name():
-    comp_name = input("Enter the name of the publisher: ")
-    pub = Publisher.find_by_name(comp_name)
-    if pub:
-        print(pub)
+def fitness_by_training():
+    train = input("Enter the type of training: ")
+    fit = Fitness.find_by_name(train)
+    if fit:
+        print(fit)
     else:
-        print("The publisher name was not found.")
+        print("The training type was not found.")
 
-def create_publishers():
-    comp_name = input("Enter the name of the publisher: ")
-    location = input("Enter the name of the publisher's location: ")
+def create_fitness():
+    training = input("Enter the training type: ")
+    target = input("Enter the muscle you wish to target: ")
     try:
-        publisher = Publisher.create(comp_name, location)
-        print(f"Successfully created game publisher.")
+        fitness = Fitness.create(training, target)
+        print(f"Successfully created game fitness training type.")
     except Exception as ex:
-        print("Error creating publisher: ", ex)
+        print("Error creating fitness trainer: ", ex)
 
-def delete_publisher():
-    id_ = input("Enter the id of the publisher you wish to remove: ")
-    if publisher := Publisher.find_by_id(id_):
-        publisher.delete()
-        print(f"Publisher id:{id_} successfully deleted.")
+def delete_fitness():
+    train = input("Enter the training type you wish to remove: ")
+    if fitness := Fitness.find_by_name(train):
+        fitness.delete()
+        print(f"Fitness training type successfully deleted.")
     else:
-        print(f"Publisher id:{id_} not found.")
+        print(f"Training type was not found.")
 
-def update_publisher():
-    id_ = input("Enter the id of the publisher: ")
-    if publisher:= Publisher.find_by_id(id_):
-        try:
-            company_name = input("Enter the new name of the publisher: ")
-            publisher.company_name = company_name
-            location = input("Enter the publisher's new location: ")
-            publisher.location = location
-        except Exception as ex:
-            print(f"Error updating publisher: ", ex)
+def list_training_exercises():
+    id_ = input()
+    fitness = Fitness.find_by_id(id_)
+    if fitness:
+        exercises = fitness.exercises()
+        for exercise in exercises:
+            print(exercise)
     else:
-        print(f"Publisher id:{id_} not found.")
+        print(f"Training type doesnt exist yet.")
 
-#Videogames 
+#Exercise 
 
-def list_all_videogames():
-    videogames = Videogame.get_all()
-    for video in videogames:
-        print(video)
+def list_all_Exercises():
+    exercise = Exercise.get_all()
+    for ex in exercise:
+        print(ex)
 
-def find_videogame_by_name():
-    name = input("Please enter the name of the video game: ")
-    videogames = Videogame.find_by_name(name)
-    if videogames:
-        print(videogames)
+def find_exercise_by_name():
+    name = input("Please enter the name of the exercise: ")
+    exercise = Exercise.find_by_name(name)
+    if exercise:
+        print(exercise)
     else:
-        print(f"The video game {name} was not found")
+        print(f"The exercise {name} was not found")
 
-def find_videogame_by_id():
+def find_exercise_by_id():
     id_ = input("Please enter the video game id: ")
-    videogames = Videogame.find_by_id(id_)
-    if videogames:
-        print(videogames)
+    exercise = Exercise.find_by_id(id_)
+    if exercise:
+        print(exercise)
     else:
         print(f"The video game id: {id_} was not found") 
 
-def update_videogame():
-    id_ = input("Please enter video game id: ")
-    if videogames:= Videogame.find_by_id(id_):
-        try:
-            name = input("Please enter video game name: ")
-            videogames.name = name
-            genre = input("Please enter the video game's genre: ")
-            videogames.genre = genre
-            year = input("Please enter the video game's release year: ")
-            videogames.year = year
-            console = input("Please enter the console(s) the video game released on: ")
-            videogames.console = console
-            videogames.update()
-        except Exception as ex:
-            print("Error, update unsuccessful: ", ex)
-    else:
-        print(f"Error: Video game id: {id_} was not found.")
-
-def delete_videogame():
+def delete_exercise():
     id_ = input("Please enter the video game you wish to remove: ")
     if videogames:= Videogame.find_by_id(id_):
         videogames.delete()
@@ -112,17 +89,15 @@ def delete_videogame():
         print(f"Error: Video game id: {id_} was not found.")
 
 
-def create_videogame():
-    name = input("Please enter the video game's name: ")
-    genre = input("Please enter the video game's genre: ")
-    year = input("Please enter the video game's release year")
-    console = input("Please enter the console(s) the video game released on: ")
-    publisher_id = int(input("Please enter the publisher's id: "))
+def create_exercise():
+    training_type = input("Please enter the type of exercise :")
+    name = input("Please enter the exercise name: ")
+    reps = input("Please enter the repitition: ")
     try:
-        videogame = Videogame.create(name, genre, year, console, publisher_id)
-        print(f"Video game {name} has been created and stored!")
+        exercise = Exercise.create(training_type, name, reps, fitness_id)
+        print(f"Exercise {name} has been created and stored!")
     except Exception as ex:
-        print("Video game creation error: one or more of the fields were entered incorrectly: ", ex)
+        print("Exercise creation error: one or more of the fields were entered incorrectly: ", ex)
         
 
 

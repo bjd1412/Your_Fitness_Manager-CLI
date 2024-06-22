@@ -77,7 +77,7 @@ class Exercise:
     def instance_from_db(cls, row):
         exercise = cls.all.get(row[0])
 
-        if videogame:
+        if exercise:
             exercise.training_type = row[1]
             exercise.name = row[2]
             exercise.reps = row[3]
