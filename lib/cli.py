@@ -33,6 +33,8 @@ def homeMain():
             menu2()
         elif choise == 2:
             create_fitness()
+        else:
+            print("Invalid Choice!")
 
 
 def menu2():
@@ -44,22 +46,6 @@ def menu2():
             create_exercise()
         elif choice == "1":
             homeMain()
-
-
-
-
-
-def mover():
-    choice = 0
-    print("Hey, for fitness 1 exercise 2 ")
-    while True:
-        choice = input(">")
-        if choice == "1":
-            main()
-        elif choice == "2":
-            main2()
-        else:
-            print("Invalid Choice")
 
 
 if __name__ == "__main__":
