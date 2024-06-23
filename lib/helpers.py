@@ -48,7 +48,7 @@ def delete_fitness():
         print(f"Training type was not found.")
 
 def list_training_exercises():
-    id_ = input()
+    id_ = input("Enter the training numer: ")
     fitness = Fitness.find_by_id(id_)
     if fitness:
         exercises = fitness.exercises()
@@ -82,19 +82,18 @@ def find_exercise_by_id():
 
 def delete_exercise():
     id_ = input("Please enter the video game you wish to remove: ")
-    if videogames:= Videogame.find_by_id(id_):
-        videogames.delete()
+    if exercise:= Exercise.find_by_id(id_):
+        exercise.delete()
         print("Removal was successful.")
     else:
         print(f"Error: Video game id: {id_} was not found.")
 
 
 def create_exercise():
-    training_type = input("Please enter the type of exercise :")
     name = input("Please enter the exercise name: ")
     reps = input("Please enter the repitition: ")
     try:
-        exercise = Exercise.create(training_type, name, reps, fitness_id)
+        exercise = Exercise.create(name, reps, fitness_id)
         print(f"Exercise {name} has been created and stored!")
     except Exception as ex:
         print("Exercise creation error: one or more of the fields were entered incorrectly: ", ex)

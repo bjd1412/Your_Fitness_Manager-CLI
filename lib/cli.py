@@ -14,7 +14,7 @@ from helpers import (
 )
 
 def homeMain():
-    print("***************Welcome to the fitness manager!***************")
+    print("***************Welcome to the fitness manager***************")
     print()
     print("Here are all of your training types:")
     print()
@@ -31,8 +31,9 @@ def homeMain():
         elif choice == 1:
             list_training_exercises()
             menu2()
-        elif choise == 2:
+        elif choice == 2:
             create_fitness()
+            homeMain()
         else:
             print("Invalid Choice!")
 

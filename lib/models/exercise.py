@@ -5,16 +5,15 @@ from models.fitness import Fitness
 class Exercise:
     all = {}
     
-    def __init__(self, training_type, name, reps, fitness_id, id=None):
+    def __init__(self, name, reps, fitness_id, id=None):
         self.id = id
-        self.training_type = training_type
         self.name = name
         self.reps = reps
         self.fitness_id = fitness_id
 
     def __repr__(self):
         return(
-            f"<Exercise: {self.training_type}, {self.name}, {self.reps}>"
+            f"<Exercise: {self.name}, {self.reps}>"
         )
 
     @classmethod
@@ -22,7 +21,6 @@ class Exercise:
         sql = """
             CREATE TABLE IF NOT EXISTS exercises(
             id INTEGER PRIMARY KEY,
-            training_type TEXT,
             name TEXT,
             reps TEXT,
             fitness_id INTEGER,
@@ -41,24 +39,24 @@ class Exercise:
     
     def save(self):
         sql = """
-            INSERT INTO exercises(training_type, name, reps, fitness_id)
-            VALUES (?, ?, ?, ?)
+            INSERT INTO exercises( name, reps, fitness_id)
+            VALUES (?, ?, ?)
             """
-        CURSOR.execute(sql, (self.training_type, self.name, self.reps, self.fitness_id))
+        CURSOR.execute(sql, (self.name, self.reps, self.fitness_id))
         CONN.commit()
 
         self.id = CURSOR.lastrowid
         type(self).all[self.id] = self
 
     @classmethod
-    def create(cls, training_type, name, reps, fitness_id):
-        exercise = cls(training_type, name, reps, fitness_id)
+    def create(cls, name, reps, fitness_id):
+        exercise = cls( name, reps, fitness_id)
         exercise.save()
         return exercise
 
     def update(self):
         sql = """
-            UPDATE exercises SET training_type = ?, name = ?, reps = ?, fitness_id = ?
+            UPDATE exercises SET  name = ?, reps = ?, fitness_id = ?
             WHERE id = ?
         """
         CURSOR.execute(sql, (self.training_type, self.name, self.reps, self.fitness_id))
@@ -78,12 +76,11 @@ class Exercise:
         exercise = cls.all.get(row[0])
 
         if exercise:
-            exercise.training_type = row[1]
-            exercise.name = row[2]
-            exercise.reps = row[3]
-            exercise.fitness_id = row[4]
+            exercise.name = row[1]
+            exercise.reps = row[2]
+            exercise.fitness_id = row[3]
         else:
-            exercise = cls(row[1], row[2], row[3], row[4])
+            exercise = cls(row[1], row[2], row[3])
             exercise.id = row[0]
             cls.all[exercise.id] = exercise
         return exercise
