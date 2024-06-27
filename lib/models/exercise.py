@@ -11,6 +11,28 @@ class Exercise:
         self.reps = reps
         self.fitness_id = fitness_id
 
+    @property
+    def name(self):
+        return self._name 
+
+    @name.setter
+    def name(self, name):
+        if isinstance(name, str) and len(name):
+            self._name = name
+        else:
+            raise ValueError("name must be a non-empty string")
+
+    @property
+    def reps(self):
+        return self._reps
+
+    @reps.setter
+    def reps(self, reps):
+        if isinstance(reps, str) and len(reps):
+            self._reps = reps
+        else:
+            raise ValueError("reps must be a non-empty string")
+
     def __repr__(self):
         return(
             f"<Exercise: {self.name}, {self.reps}>"
@@ -59,7 +81,7 @@ class Exercise:
             UPDATE exercises SET  name = ?, reps = ?, fitness_id = ?
             WHERE id = ?
         """
-        CURSOR.execute(sql, (self.training_type, self.name, self.reps, self.fitness_id))
+        CURSOR.execute(sql, (self.name, self.reps, self.fitness_id))
         CONN.commit()
 
     def delete(self):
@@ -107,6 +129,14 @@ class Exercise:
             SELECT * FROM exercises
         """
         rows = CURSOR.execute(sql).fetchall()
+        return [cls.instance_from_db(row) for row in rows]
+
+    @classmethod
+    def find_all_by_id(cls, fitness_id):
+        sql = """
+            SELECT * FROM exercises WHERE fitness_id = ?
+        """
+        rows = CURSOR.execute(sql, (fitness_id,)).fetchall()
         return [cls.instance_from_db(row) for row in rows]
 
 

@@ -11,6 +11,28 @@ class Fitness:
         self.training = training
         self.target = target
 
+    @property
+    def training(self):
+        return self._training
+
+    @training.setter
+    def training(self, training):
+        if isinstance(training, str) and len(training):
+            self._training = training
+        else:
+            raise ValueError("training must be a non-empty string")
+
+    @property
+    def target(self):
+        return self._target
+    
+    @target.setter
+    def target(self, target):
+        if isinstance(target, str) and len(target):
+            self._target = target
+        else:
+            raise ValueError("target must be a non-empty string")
+
 
     def __repr__(self):
         return f"Fitness: {self.training}, {self.target}"
@@ -107,11 +129,11 @@ class Fitness:
     def exercises(self):
         from models.exercise import Exercise
         sql = """
-            SELECT * FROM exercises WHERE id = ?
+            SELECT * FROM exercises WHERE fitness_id = ?
         """
-        CURSOR.execute(sql, (self.id,),)
+        CURSOR.execute(sql, (self.id,))
 
         rows = CURSOR.fetchall()
         return[Exercise.instance_from_db(row) for row in rows]
 
-           
+       
