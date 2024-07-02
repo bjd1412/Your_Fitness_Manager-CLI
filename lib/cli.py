@@ -11,6 +11,7 @@ from helpers import (
 
 
 def home():
+    print()
     print("********************Welcome To Your Fitness Manager********************")
     print()
     print()
@@ -72,15 +73,7 @@ def home3(fit):
         print("Press 0 to exit.")
         choice = input("> ")
         if choice == "1":
-            name = input("Please enter the exercise name: ")
-            reps = input("Please enter the repetitions: ")
-            fitness_id = fit
-            try:
-                exercise = Exercise.create(name, reps, fitness_id)
-                print(f"Exercise {name} has been created and stored!")
-            except Exception as ex:
-                print("Exercise creation error: one or more of the fields were entered incorrectly: ", ex)
-
+            add_exercise(fit)
         elif choice == "2":
             home2()
         elif choice == "3":
