@@ -82,9 +82,9 @@ class Fitness:
 
     def delete(self):
         sql = """
-            DELETE FROM fitness WHERE id = ?
+            DELETE FROM fitness WHERE training = ?
         """
-        CURSOR.execute(sql, (self.id,))
+        CURSOR.execute(sql, (self.training,))
         CONN.commit()
         del type(self).all[self.id]
         self.id = None

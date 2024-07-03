@@ -6,7 +6,9 @@ from helpers import (
     all_fitness,
     exit_program,
     add_fitness,
-    add_exercise
+    add_exercise,
+    delete_exercise,
+    delete_fitness
 )
 
 
@@ -29,18 +31,19 @@ def home():
 
 def home2():
     print()
-    print()
-    print("***************")
-    print()
-    all_fitness()
-    print()
-    print("***************")
-    print()
     while True:
+        print()
+        print("***************")
+        print()
+        all_fitness()
+        print()
+        print("***************")
+        print()
         print()
         print()
         print("Press 1 to see all exercises for your training type.")
         print("Press 2 to add a training type.")
+        print("Press 3 to delete your training type.")
         print("Press 0 to exit Your Fitness Manager.")
     
         choice = input("> ")
@@ -48,25 +51,27 @@ def home2():
             name = input("Please enter the training type: ")
             fitness = Fitness.find_by_name(name)
             if fitness:
-                fit = fitness.id
+                print(f"      {fitness.training}")
+                print("***************")
                 exercise = fitness.exercises()
                 for i, ex in enumerate(exercise, start = 1):
                     print(f"{i}: {ex.name} | {ex.reps}")
-                home3(fit)
             else:
                 print("Training type was either entered innocorrectly, or does not exist.")
-            home3()
+            home3(fitness)
         elif choice == "2":
             add_fitness()
+        elif choice == "3":
+            delete_fitness()
         elif choice == "0":
             exit_program()
         else:
             print("Invalid Choice!") 
 
-def home3(fit):
-    print(fit)
-    fitness_id = fit
+def home3(fitness):
+    fit = fitness.id
     while True:
+        print()
         print("Press 1 to add an exercise.")
         print("Press 2 to return to training types.")
         print("Press 3 to delete an exercise.")
@@ -77,7 +82,7 @@ def home3(fit):
         elif choice == "2":
             home2()
         elif choice == "3":
-            del_exercise()
+            delete_exercise()
         elif choice == "0":
             exit_program()
         else:

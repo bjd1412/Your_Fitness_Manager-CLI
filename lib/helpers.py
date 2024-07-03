@@ -60,6 +60,27 @@ def add_exercise(fit):
     except Exception as ex:
         print("Exercise creation error: one or more of the fields were entered incorrectly: ", ex)
 
+def delete_fitness():
+    name = input("Enter the training type you would like to delete: ")
+    fitness = Fitness.find_by_name(name)
+    if fitness:
+        fitness.delete()
+        print("Traning type deleted!")
+    else:
+        print("I'm sorry, the training type you entered was incorrect, or does not exist.")
+
+
+
+def delete_exercise():
+    name = input("Please enter the name of the exercise you wish to delete: ")
+    exercise = Exercise.find_by_name(name)
+    if exercise:
+        exercise.delete()
+        print("Exercise deleted!")
+    else:
+        print("I'm sorry, the exercise was either entered incorrectly, or does not exist.")
+        
+
 
     
     
