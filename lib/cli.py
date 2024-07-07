@@ -14,7 +14,8 @@ from helpers import (
 
 def home():
     print()
-    print("********************Welcome To Your Fitness Manager********************")
+    print("    Welcome to Your Fitness Manager")
+    print("****************************************")
     print()
     print()
     print("Press 1 to see all of your training types.")
@@ -51,14 +52,15 @@ def home2():
             fitness = Fitness.find_by_name(name)
             if fitness:
                 print()
-                print(f"{fitness.training}")
+                print(f"     {fitness.training}")
                 print("*******************")
+                print()
                 exercise = fitness.exercises()
                 for i, ex in enumerate(exercise, start = 1):
                     print(f"{i}: {ex.name} | {ex.reps}")
+                home3(fitness)
             else:
                 print("Training type was either entered innocorrectly, or does not exist.")
-            home3(fitness)
         elif choice == "2":
             add_fitness()
         elif choice == "3":
@@ -69,7 +71,6 @@ def home2():
             print("Invalid Choice!") 
 
 def home3(fitness):
-    fit = fitness.id
     while True:
         print()
         print("Press 1 to add an exercise.")
@@ -78,7 +79,7 @@ def home3(fitness):
         print("Press 0 to exit.")
         choice = input("> ")
         if choice == "1":
-            add_exercise(fit)
+            add_exercise(fitness)
         elif choice == "2":
             home2()
         elif choice == "3":

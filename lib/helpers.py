@@ -50,15 +50,18 @@ def add_fitness():
     except:
         print("Failed to create fitness type. Please ensure you have entered in all details correctly.")
 
-def add_exercise(fit):
+def add_exercise(fitness):
     name = input("Please enter the exercise name: ")
     reps = input("Please enter the repetitions: ")
-    fitness_id = fit
-    try:
-        exercise = Exercise.create(name, reps, fitness_id)
-        print(f"Exercise {name} has been created and stored!")
-    except Exception as ex:
-        print("Exercise creation error: one or more of the fields were entered incorrectly: ", ex)
+    fitness_id = fitness.id
+    if fitness_id:
+        try:
+            exercise = Exercise.create(name, reps, fitness_id)
+            print(f"Exercise {name} has been created and stored!")
+        except Exception as ex:
+            print("Exercise creation error: one or more of the fields were entered incorrectly: ", ex)
+    else:
+        print("Error")
 
 def delete_fitness():
     name = input("Enter the training type you would like to delete: ")
