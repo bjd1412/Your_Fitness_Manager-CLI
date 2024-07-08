@@ -52,20 +52,11 @@ def home2():
         choice = input("> ")
         if choice == "1":
             name = input("Please enter the training type: ")
-            fitness = Fitness.find_by_name(name)
-            if fitness:
-                print()
-                print(f"     {fitness.training}")
-                print("-------------------")
-                print()
-                exercise = fitness.exercises()
-                for ex in exercise:
-                    print(f"{ex.name} | {ex.reps}")
-                    print()
-                print("-------------------")
+            if fitness:= Fitness.find_by_name(name):
+                fitness_exercises(fitness)
                 home3(fitness)
             else:
-                print("Training type was either entered incorrectly, or does not exist.")
+                print("Invalid Choice!")
         elif choice == "2":
             add_fitness()
         elif choice == "3":

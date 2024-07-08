@@ -20,7 +20,6 @@ def all_exercises():
         print(f"{ex.name} | {ex.repsh}")
 
 def fitness_exercises(fitness):
-    if fitness:
         print()
         print(f"     {fitness.training}")
         print("-------------------")
