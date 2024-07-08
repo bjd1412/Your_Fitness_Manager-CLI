@@ -8,18 +8,20 @@ from helpers import (
     add_fitness,
     add_exercise,
     delete_exercise,
-    delete_fitness
+    delete_fitness,
+    fitness_exercises
+
 )
 
 
 def home():
     print()
     print("    Welcome to Your Fitness Manager")
-    print("****************************************")
+    print("----------------------------------------")
     print()
     print()
-    print("Press 1 to see all of your training types.")
-    print("Press 0 to exit Your Fitness Manager.")
+    print("Enter 1 to see all of your training types.")
+    print("Enter 0 to exit Your Fitness Manager.")
     while True:
         print()
         choice = input("> ")
@@ -34,18 +36,19 @@ def home2():
     print()
     while True:
         print()
-        print("***************")
+        print("          Your training types")
+        print("----------------------------------------")
         print()
         all_fitness()
         print()
-        print("***************")
+        print("----------------------------------------")
         print()
         print()
         print()
-        print("Press 1 to see all exercises for your training type.")
-        print("Press 2 to add a training type.")
-        print("Press 3 to delete your training type.")
-        print("Press 0 to exit Your Fitness Manager.")    
+        print("Enter 1 to see all exercises for your training type.")
+        print("Enter 2 to add a training type.")
+        print("Enter 3 to delete your training type.")
+        print("Enter 0 to exit Your Fitness Manager.")    
         choice = input("> ")
         if choice == "1":
             name = input("Please enter the training type: ")
@@ -53,14 +56,16 @@ def home2():
             if fitness:
                 print()
                 print(f"     {fitness.training}")
-                print("*******************")
+                print("-------------------")
                 print()
                 exercise = fitness.exercises()
-                for i, ex in enumerate(exercise, start = 1):
-                    print(f"{i}: {ex.name} | {ex.reps}")
+                for ex in exercise:
+                    print(f"{ex.name} | {ex.reps}")
+                    print()
+                print("-------------------")
                 home3(fitness)
             else:
-                print("Training type was either entered innocorrectly, or does not exist.")
+                print("Training type was either entered incorrectly, or does not exist.")
         elif choice == "2":
             add_fitness()
         elif choice == "3":
@@ -73,13 +78,14 @@ def home2():
 def home3(fitness):
     while True:
         print()
-        print("Press 1 to add an exercise.")
-        print("Press 2 to return to training types.")
-        print("Press 3 to delete an exercise.")
-        print("Press 0 to exit.")
+        print("Enter 1 to add an exercise.")
+        print("Enter 2 to return to training types.")
+        print("Enter 3 to delete an exercise.")
+        print("Enter 0 to exit.")
         choice = input("> ")
         if choice == "1":
             add_exercise(fitness)
+            fitness_exercises(fitness)
         elif choice == "2":
             home2()
         elif choice == "3":
