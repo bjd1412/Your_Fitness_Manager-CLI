@@ -20,7 +20,7 @@ class Fitness:
         if isinstance(training, str) and len(training):
             self._training = training
         else:
-            raise ValueError("training must be a non-empty string")
+            raise ValueError("Training cannot be an empty value.")
 
     @property
     def target(self):
@@ -31,7 +31,7 @@ class Fitness:
         if isinstance(target, str) and len(target):
             self._target = target
         else:
-            raise ValueError("target must be a non-empty string")
+            raise ValueError("Target cannot be an empty value.")
 
 
     def __repr__(self):

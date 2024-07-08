@@ -20,7 +20,7 @@ class Exercise:
         if isinstance(name, str) and len(name):
             self._name = name
         else:
-            raise ValueError("name must be a non-empty string")
+            raise ValueError("Name cannot be an empty value.")
 
     @property
     def reps(self):
@@ -31,7 +31,7 @@ class Exercise:
         if isinstance(reps, str) and len(reps):
             self._reps = reps
         else:
-            raise ValueError("reps must be a non-empty string")
+            raise ValueError("Reps cannot be an empty value.")
 
     def __repr__(self):
         return(

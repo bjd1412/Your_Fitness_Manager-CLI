@@ -36,8 +36,8 @@ def add_fitness():
     try:
         Fitness.create(training, target)
         print("Fitness type succesfully created!")
-    except:
-        print("Failed to create fitness type. Please ensure you have entered in all details correctly.")
+    except Exception as fit:
+        print("Failed to create fitness type. Please ensure you have entered in all details correctly.", fit)
 
 def add_exercise(fitness):
     name = input("Please enter the exercise name: ")

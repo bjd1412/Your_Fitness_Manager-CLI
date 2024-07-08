@@ -1,8 +1,8 @@
-# Phase 3 CLI+ORM Project Template
+# Welcome To Your Fitness Manager
 
-## Learning Goals
+## How To Use
 
-- Discuss the basic directory structure of a CLI.
+- Your Fitness Manager is very simple to use, just follow the prompts on screen to view, create, and delete your training types and exercises.
 - Outline the first steps in building a CLI.
 
 ---
