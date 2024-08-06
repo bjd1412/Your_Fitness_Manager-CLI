@@ -15,6 +15,8 @@ from helpers import (
 
 
 def home():
+    Fitness.create_table()
+    Exercise.create_table()
     print()
     print("    Welcome to Your Fitness Manager")
     print("----------------------------------------")
