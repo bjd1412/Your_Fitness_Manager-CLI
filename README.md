@@ -1,14 +1,25 @@
 # Welcome To Your Fitness Manager
 
-
  Your Fitness Manager is very simple to use application that helps you create and track your daily fitness regiment.
 
+## Requirements
+
+- Python 3
+
+
+
+
 ## How To Use
- 
+
 #### Step 1
+You must do 1 of the following:
+ - Download the folder and open it in your terminal.
+ - Clone the repository in the folder of your choosing.
+ 
+#### Step 2
 
 In your command line, navigate to the folder that holds "Your Fitness Manager" and enter: "python lib/cli.py".
-
+ 
 ![ReferenceGif](/gif/P1.gif)
 
 #### Step 2
